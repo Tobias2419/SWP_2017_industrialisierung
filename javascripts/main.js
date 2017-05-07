@@ -7,6 +7,16 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 50.984, lng: 11.029},
     zoom: 8,
+    minZoom: 8,
+    maxZoom: 20,
+
+    zoomControl: true,
+    mapTypeControl: false,
+    scaleControl: false,
+    streetViewControl: false,
+    rotateControl: false,
+    fullscreenControl: false,
+
     styles: [
   {
     "featureType": "administrative",
@@ -178,21 +188,9 @@ function initMap() {
   }
 ]
   });
-
-/*  markers[0] = new google.maps.Marker({
-      position: {lat: -25.363, lng: 131.044},
-      map: map,
-      title: 'Hello World!'
-    });
-*/
-
-  map.setTilt(0);
 }
 
 jQuery( document ).ready(function() {
-
-  // Testing jQuery source
-  // jQuery("#test").hide();
 
   jQuery( "#slider" ).slider({
     range: true
