@@ -5,9 +5,9 @@ var markers = new Array;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 50.984, lng: 11.029},
-    zoom: 8,
-    minZoom: 8,
+    center: {lat: 50.930, lng: 11.240},
+    zoom: 9,
+    minZoom: 9,
     maxZoom: 20,
 
     zoomControl: true,
@@ -16,7 +16,7 @@ function initMap() {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
-
+    
     styles: [
   {
     "featureType": "administrative",
@@ -191,6 +191,33 @@ function initMap() {
 }
 
 jQuery( document ).ready(function() {
+    // run the currently selected effect
+        function runEffect() {
+          // get effect type from
+          var selectedEffect = $( "drop" ).val();
+
+          // Most effect types need no options passed by default
+          var options = {};
+          // some effects have required parameters
+          if ( selectedEffect === "scale" ) {
+            options = { percent: 50 };
+          } else if ( selectedEffect === "size" ) {
+            options = { to: { width: 280, height: 185 } };
+          }
+
+         // Run the effect
+          $( "#effect" ).toggle( selectedEffect, options, 500 );
+          };
+
+        // Set effect from select menu value
+        $( "#button" ).on( "click", function() {
+          runEffect();
+        });
+
+        $( "#effect" ).hide();
+      } )
+
+jQuery( document ).ready(function() {
 
   jQuery( "#slider" ).slider({
     range: true
@@ -199,5 +226,4 @@ jQuery( document ).ready(function() {
   jQuery( ".legendCheckbox" ).checkboxradio({
 
   });
-
 });
