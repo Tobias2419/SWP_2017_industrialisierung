@@ -6,8 +6,8 @@ var markers = new Array;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 50.930, lng: 11.240},
-    zoom: 9,
-    minZoom: 9,
+    zoom: 8,
+    minZoom: 8,
     maxZoom: 20,
 
     zoomControl: true,
