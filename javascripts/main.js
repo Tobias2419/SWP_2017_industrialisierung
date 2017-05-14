@@ -16,7 +16,7 @@ function initMap() {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
-    
+
     styles: [
   {
     "featureType": "administrative",
@@ -190,6 +190,7 @@ function initMap() {
   });
 }
 
+
 // Login-Box
 jQuery( document ).ready(function() {
     // run the currently selected effect
@@ -216,13 +217,12 @@ jQuery( document ).ready(function() {
         });
 
         $( "#effect" ).hide();
-      } )
+      });
 
 // jQuery UI Effekte
 jQuery( document ).ready(function() {
-
-  // Konstanten
-  var FULL_TIMESPAN = [1850, 1950];
+  // Zeitstrahl
+  var FULL_TIMESPAN = [1850, 1950];         // Konstanten
 
   jQuery( "#slider" ).slider({
     range: true,
@@ -230,8 +230,47 @@ jQuery( document ).ready(function() {
     max: FULL_TIMESPAN [1],
     values: [FULL_TIMESPAN [0], FULL_TIMESPAN [1]],
   });
+});
 
-  jQuery( ".legendCheckbox" ).checkboxradio({
+// Legende
+jQuery( document ).ready(function() {
+
+  var showType = [true, true, true, true];  // welche Datentypen auf Karte angezeigt werden
+
+  function toggleShowenType(ID) {
+    toggleType = showType [ID];
+    toggleType = !toggleType;
+    showType [ID] = toggleType;
+  };
+
+  // initialisiere Legende
+  jQuery( ".legendItem" ).addClass( "activeLegendItem" );
+
+  // Legenden-Funktionalität
+  jQuery( ".legendItem" ).on('click', function(){
+    var clickedItem = jQuery(this);
+    var clickedItemID = clickedItem.attr('rel');
+
+    toggleShowenType(clickedItemID);
+
+    jQuery(clickedItem).toggleClass( "activeLegendItem" );
+
+    // Variablen Test
+    jQuery(".test").append("<li>"+ clickedItemID.toString() + " " + toggleType.toString() +"</li>");
+
+  });
+});
+
+// Pop-In Buttons
+jQuery( document ).ready(function() {
+
+  jQuery( ".pop_button" ).on('click', function() {
+
+    if (jQuery(this).attr('rel') == 1) {
+      jQuery( "#legend" ).toggle();
+    } else {
+      jQuery( "#info" ).toggle();
+    };
 
   });
 });
