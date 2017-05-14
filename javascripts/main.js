@@ -190,6 +190,7 @@ function initMap() {
   });
 }
 
+// Login-Box
 jQuery( document ).ready(function() {
     // run the currently selected effect
         function runEffect() {
@@ -217,10 +218,17 @@ jQuery( document ).ready(function() {
         $( "#effect" ).hide();
       } )
 
+// jQuery UI Effekte
 jQuery( document ).ready(function() {
 
+  // Konstanten
+  var FULL_TIMESPAN = [1850, 1950];
+
   jQuery( "#slider" ).slider({
-    range: true
+    range: true,
+    min: FULL_TIMESPAN [0],
+    max: FULL_TIMESPAN [1],
+    values: [FULL_TIMESPAN [0], FULL_TIMESPAN [1]],
   });
 
   jQuery( ".legendCheckbox" ).checkboxradio({
