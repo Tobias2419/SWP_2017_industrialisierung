@@ -2,12 +2,12 @@ jQuery.noConflict();
 
 var map;
 var markers = new Array;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+var map_zoom = 8;
+var map_option = {
     center: {lat: 50.930, lng: 11.240},
-    zoom: 8,
-    minZoom: 8,
+
+    zoom: map_zoom,
+    minZoom: map_zoom,
     maxZoom: 20,
 
     zoomControl: true,
@@ -16,7 +16,7 @@ function initMap() {
     streetViewControl: false,
     rotateControl: false,
     fullscreenControl: false,
-    
+
     styles: [
   {
     "featureType": "administrative",
@@ -187,8 +187,12 @@ function initMap() {
     ]
   }
 ]
-  });
+  } 
+  
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), map_option); 
 }
+
 
 // Login-Box
 jQuery( document ).ready(function() {
@@ -214,15 +218,14 @@ jQuery( document ).ready(function() {
         $( "#button" ).on( "click", function() {
           runEffect();
         });
-
         $( "#effect" ).hide();
-      } )
+
+      }); 
 
 // jQuery UI Effekte
 jQuery( document ).ready(function() {
-
-  // Konstanten
-  var FULL_TIMESPAN = [1850, 1950];
+  // Zeitstrahl
+  var FULL_TIMESPAN = [1850, 1950];         // Konstanten
 
   jQuery( "#slider" ).slider({
     range: true,
@@ -230,8 +233,94 @@ jQuery( document ).ready(function() {
     max: FULL_TIMESPAN [1],
     values: [FULL_TIMESPAN [0], FULL_TIMESPAN [1]],
   });
+});
 
-  jQuery( ".legendCheckbox" ).checkboxradio({
+// Legende
+jQuery( document ).ready(function() {
+
+  var showType = [true, true, true, true];  // welche Datentypen auf Karte angezeigt werden
+
+  function toggleShowenType(ID) {
+    toggleType = showType [ID];
+    toggleType = !toggleType;
+    showType [ID] = toggleType;
+  };
+
+  // initialisiere Legende
+  jQuery( ".legendItem" ).addClass( "activeLegendItem" );
+
+  // Legenden-Funktionalität
+  jQuery( ".legendItem" ).on('click', function(){
+    var clickedItem = jQuery(this);
+    var clickedItemID = clickedItem.attr('rel');
+
+    toggleShowenType(clickedItemID);
+
+    jQuery(clickedItem).toggleClass( "activeLegendItem" );
+
+    // Variablen Test
+    jQuery(".test").append("<li>"+ clickedItemID.toString() + " " + toggleType.toString() +"</li>");
 
   });
+});
+
+jQuery( document ).ready(function() {
+  jQuery( ".pop_button1" ).on('click', function() {
+      jQuery( "#spoiler_left" ).toggle();
+      jQuery( "#spoiler_left_active" ).show();
+      document.getElementById("map").style.left = "0.9%";
+      document.getElementById("map").style.width = "84.3%";
+      document.getElementById("map").style.height = "99.2%"; 
+      document.getElementById("info").style.height = "98.7%";
+      document.getElementById("slider").style.top = "100.3%";
+      map_zoom = 10;
+      map = new google.maps.Map(document.getElementById('map'), map_option);
+  });
+
+jQuery( ".pop-up1_return" ).on('click', function() {
+      jQuery( "#spoiler_left" ).toggle();
+      jQuery( "#spoiler_left_active" ).hide();
+      document.getElementById("map").style.left = "14.8%";
+      document.getElementById("map").style.width = "70.4%";
+      document.getElementById("map").style.height = "85%";
+      document.getElementById("info").style.height = "84.4%";
+      document.getElementById("slider").style.top = "86%";
+      map_zoom = 8;
+      map = new google.maps.Map(document.getElementById('map'), map_option);
+  });
+});
+
+jQuery( document ).ready(function() {
+    jQuery( "#button1").on('click', function() {
+        document.getElementById( "button1" ).style.color = "#FFCC66";
+        document.getElementById( "button1" ).style.textDecoration = "underline";
+        document.getElementById( "button2" ).style.color = "#FFFFFF";
+        document.getElementById( "button2" ).style.textDecoration = "none";
+        document.getElementById( "button3" ).style.color = "#FFFFFF";
+        document.getElementById( "button3" ).style.textDecoration = "none";
+        map_zoom = 8;
+        map = new google.maps.Map(document.getElementById('map'), map_option);
+    });
+});
+
+jQuery( document ).ready(function() {
+    jQuery( "#button2").on('click', function() {
+        document.getElementById( "button1" ).style.color = "#FFFFFF";
+        document.getElementById( "button1" ).style.textDecoration = "none";
+        document.getElementById( "button2" ).style.color = "#FFCC66";
+        document.getElementById( "button2" ).style.textDecoration = "underline";
+        document.getElementById( "button3" ).style.color = "#FFFFFF";
+        document.getElementById( "button3" ).style.textDecoration = "none";
+    });    
+});
+
+jQuery( document ).ready(function() {
+    jQuery( "#button3").on('click', function() {
+        document.getElementById( "button2" ).style.color = "#FFFFFF";
+        document.getElementById( "button2" ).style.textDecoration = "none";
+        document.getElementById( "button1" ).style.color = "#FFFFFF";
+        document.getElementById( "button1" ).style.textDecoration = "none";
+        document.getElementById( "button3" ).style.color = "#FFCC66";
+        document.getElementById( "button3" ).style.textDecoration = "underline";
+    });
 });
