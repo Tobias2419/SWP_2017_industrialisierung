@@ -190,7 +190,7 @@ var map_option = {
   } 
   
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), map_option); 
+  map = new google.maps.Map(document.getElementById("map"), map_option); 
 }
 
 
@@ -286,41 +286,6 @@ jQuery( ".pop-up1_return" ).on('click', function() {
       document.getElementById("info").style.height = "84.4%";
       document.getElementById("slider").style.top = "86%";
       map_zoom = 8;
-      map = new google.maps.Map(document.getElementById('map'), map_option);
+      map = new google.maps.Map(document.getElementById("map"), map_option);
   });
-});
-
-jQuery( document ).ready(function() {
-    jQuery( "#button1").on('click', function() {
-        document.getElementById( "button1" ).style.color = "#FFCC66";
-        document.getElementById( "button1" ).style.textDecoration = "underline";
-        document.getElementById( "button2" ).style.color = "#FFFFFF";
-        document.getElementById( "button2" ).style.textDecoration = "none";
-        document.getElementById( "button3" ).style.color = "#FFFFFF";
-        document.getElementById( "button3" ).style.textDecoration = "none";
-        map_zoom = 8;
-        map = new google.maps.Map(document.getElementById('map'), map_option);
-    });
-});
-
-jQuery( document ).ready(function() {
-    jQuery( "#button2").on('click', function() {
-        document.getElementById( "button1" ).style.color = "#FFFFFF";
-        document.getElementById( "button1" ).style.textDecoration = "none";
-        document.getElementById( "button2" ).style.color = "#FFCC66";
-        document.getElementById( "button2" ).style.textDecoration = "underline";
-        document.getElementById( "button3" ).style.color = "#FFFFFF";
-        document.getElementById( "button3" ).style.textDecoration = "none";
-    });    
-});
-
-jQuery( document ).ready(function() {
-    jQuery( "#button3").on('click', function() {
-        document.getElementById( "button2" ).style.color = "#FFFFFF";
-        document.getElementById( "button2" ).style.textDecoration = "none";
-        document.getElementById( "button1" ).style.color = "#FFFFFF";
-        document.getElementById( "button1" ).style.textDecoration = "none";
-        document.getElementById( "button3" ).style.color = "#FFCC66";
-        document.getElementById( "button3" ).style.textDecoration = "underline";
-    });
 });
